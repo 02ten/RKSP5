@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/%22%3E">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="new_file_form" enctype="multipart/form-data" th:method="POST" th:action="@{/files}" th:object="${newFiles}">
+    <input multiple  type="file" th:field="*{files}"></input>
+</form>
+<button form="new_file_form" type="submit">Загрузить</button>
+<p>Все файлы</p>
+<div th:each ="file: ${files}">
+    <div style="display: flex;">
+        <a th:href="${file.getUrl()}" th:text="${file.getName()}" style="padding-right: 25px"></a>
+        <p th:text="${file.getDate()}"></p>
+    </div>
+</div>
+
+
+</body>
+</html>
